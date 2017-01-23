@@ -88,7 +88,8 @@ def update_all_contenttypes(verbosity=2, **kwargs):
     for app in get_apps():
         update_contenttypes(app, None, verbosity, **kwargs)
 
-signals.post_syncdb.connect(update_contenttypes)
+# Do not try to update content type, see #20383
+#signals.post_syncdb.connect(update_contenttypes)
 
 if __name__ == "__main__":
     update_all_contenttypes()
