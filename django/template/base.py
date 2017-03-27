@@ -1116,7 +1116,7 @@ class Library(object):
 
     def simple_tag(self, func=None, takes_context=None, name=None):
         def dec(func):
-            params, varargs, varkw, defaults = getargspec(func)
+            params, varargs, varkw, defaults = getfullargspec(func)[:4]
 
             class SimpleNode(TagHelperNode):
 
