@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 
 import re
 from functools import partial
-from inspect import getargspec
+from inspect import getfullargspec
 
 from django.conf import settings
 from django.template.context import (BaseContext, Context, RequestContext,
@@ -624,7 +624,7 @@ class FilterExpression(object):
         plen = len(provided)
         # Check to see if a decorator is providing the real function.
         func = getattr(func, '_decorated_function', func)
-        args, varargs, varkw, defaults = getargspec(func)
+        args, varargs, varkw, defaults = getfullargspec(func)[:4]
         # First argument is filter input.
         args.pop(0)
         if defaults:
@@ -1145,7 +1145,7 @@ class Library(object):
 
     def assignment_tag(self, func=None, takes_context=None, name=None):
         def dec(func):
-            params, varargs, varkw, defaults = getargspec(func)
+            params, varargs, varkw, defaults = getfullargspec(func)[:4]
 
             class AssignmentNode(TagHelperNode):
                 def __init__(self, takes_context, args, kwargs, target_var):
@@ -1187,7 +1187,7 @@ class Library(object):
 
     def inclusion_tag(self, file_name, context_class=Context, takes_context=False, name=None):
         def dec(func):
-            params, varargs, varkw, defaults = getargspec(func)
+            params, varargs, varkw, defaults = getfullargspec(func)[:4]
 
             class InclusionNode(TagHelperNode):
 
