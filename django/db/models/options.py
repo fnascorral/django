@@ -77,7 +77,7 @@ class Options(object):
 
         cls._meta = self
         self.model = cls
-        self.installed = re.sub('\.models$', '', cls.__module__) in settings.INSTALLED_APPS
+        self.installed = re.sub(r'\.models$', '', cls.__module__) in settings.INSTALLED_APPS
         # First, construct the default values for these options.
         self.object_name = cls.__name__
         self.model_name = self.object_name.lower()

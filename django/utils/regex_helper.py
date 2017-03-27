@@ -54,7 +54,7 @@ def normalize(pattern):
         that group (along with the zero occurrence case from step (1)).
     (3) Select the first (essentially an arbitrary) element from any character
         class. Select an arbitrary character for any unordered class (e.g. '.'
-        or '\w') in the pattern.
+        or '\\w') in the pattern.
     (5) Ignore comments and any of the reg-exp flags that won't change
         what we construct ("iLmsu"). "(?x)" is an error, however.
     (6) Raise an error on all other non-capturing (?...) forms (e.g.
@@ -202,7 +202,7 @@ def next_char(input_iter):
     """
     An iterator that yields the next character from "pattern_iter", respecting
     escape sequences. An escaped character is replaced by a representative of
-    its class (e.g. \w -> "x"). If the escaped character is one that is
+    its class (e.g. \\w -> "x"). If the escaped character is one that is
     skipped, it is not returned (the next character is returned instead).
 
     Yields the next character, along with a boolean indicating whether it is a

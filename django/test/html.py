@@ -11,7 +11,7 @@ from django.utils import six
 from django.utils.encoding import python_2_unicode_compatible
 
 
-WHITESPACE = re.compile('\s+')
+WHITESPACE = re.compile(r'\s+')
 
 
 def normalize_whitespace(string):

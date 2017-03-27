@@ -86,7 +86,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
             if field_desc.startswith("UNIQUE"):
                 continue
 
-            m = re.search('references (.*) \(["|](.*)["|]\)', field_desc, re.I)
+            m = re.search(r'references (.*) \(["|](.*)["|]\)', field_desc, re.I)
             if not m:
                 continue
 
@@ -131,7 +131,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
             if field_desc.startswith("UNIQUE"):
                 continue
 
-            m = re.search('"(.*)".*references (.*) \(["|](.*)["|]\)', field_desc, re.I)
+            m = re.search(r'"(.*)".*references (.*) \(["|](.*)["|]\)', field_desc, re.I)
             if not m:
                 continue
 
